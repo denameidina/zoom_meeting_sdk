@@ -1,0 +1,2 @@
+rootProject.name = 'zoom_meeting_sdk'
+include ':mobilertc'
