@@ -63,7 +63,7 @@ enum MeetingError {
   webServiceFailed(15),
   // User needs to log in if he wants to join the webinar.
   webinarEnforceLogin(20),
-  // User needs to log in if he wants to join the webinar.
+  // Zoom not init.
   zoomNotInit(999);
 
   const MeetingError(this.value);
