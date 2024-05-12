@@ -56,13 +56,13 @@ class ZoomMeetingSdkPlugin: FlutterPlugin, MethodCallHandler, MeetingServiceList
   fun initZoom(arguments: Map<String, Any>?, result: Result) {
       zoomSDK = ZoomSDK.getInstance()
       val initParams = ZoomSDKInitParams()
-      initParams.autoRetryVerifyApp = arguments?.get("autoRetryVerifyApp") as Boolean
-      initParams.domain = arguments?.get("domain") as String
-      initParams.enableGenerateDump = arguments?.get("enableGenerateDump") as Boolean
-      initParams.enableLog = arguments?.get("enableLog") as Boolean
-      initParams.jwtToken = arguments?.get("jwtToken") as String
+      initParams.autoRetryVerifyApp = arguments?.get("autoRetryVerifyApp") as? Boolean ?: false
+      initParams.domain = arguments?.get("domain") as? String ?: ""
+      initParams.enableGenerateDump = arguments?.get("enableGenerateDump") as? Boolean ?: false
+      initParams.enableLog = arguments?.get("enableLog") as? Boolean ?: false
+      initParams.jwtToken = arguments?.get("jwtToken") as? String ?: ""
       if (arguments?.get("logSize") != null) {
-         initParams.logSize = arguments?.get("logSize") as Int
+         initParams.logSize = arguments?.get("logSize") as? Int ?: 0
       }
 
       zoomSDK?.initialize(activity, object: ZoomSDKInitializeListener {
@@ -78,60 +78,60 @@ class ZoomMeetingSdkPlugin: FlutterPlugin, MethodCallHandler, MeetingServiceList
       val meetingService = zoomSDK?.meetingService
       val opts = JoinMeetingOptions()
 
-      opts.no_audio = arguments?.get("no_audio") as Boolean
+      opts.no_audio = arguments?.get("no_audio") as? Boolean ?: false
       if (arguments?.get("webinar_token") != null) {
-        opts.webinar_token = arguments?.get("webinar_token") as String
+        opts.webinar_token = arguments?.get("webinar_token") as? String ?: ""
       }
       if (arguments?.get("custom_meeting_id") != null) {
-        opts.custom_meeting_id = arguments?.get("custom_meeting_id")  as String
+        opts.custom_meeting_id = arguments?.get("custom_meeting_id")  as? String ?: ""
       }
       if (arguments?.get("customer_key") != null) {
-        opts.customer_key = arguments?.get("customer_key") as String
+        opts.customer_key = arguments?.get("customer_key") as? String ?: ""
       }
       if (arguments?.get("invite_options") != null) {
-        opts.invite_options = arguments?.get("invite_options") as Int
+        opts.invite_options = arguments?.get("invite_options") as? Int ?: 0
       }
       if (arguments?.get("meeting_views_options") != null) {
-        opts.meeting_views_options = arguments?.get("meeting_views_options") as Int
+        opts.meeting_views_options = arguments?.get("meeting_views_options") as? Int ?: 0
       }
-      opts.no_bottom_toolbar = arguments?.get("no_bottom_toolbar") as Boolean
-      opts.no_chat_msg_toast = arguments?.get("no_chat_msg_toast") as Boolean
-      opts.no_dial_in_via_phone = arguments?.get("no_dial_in_via_phone") as Boolean
-      opts.no_dial_out_to_phone = arguments?.get("no_dial_out_to_phone") as Boolean
-      opts.no_disconnect_audio = arguments?.get("no_disconnect_audio") as Boolean
-      opts.no_driving_mode = arguments?.get("no_driving_mode") as Boolean
-      opts.no_invite = arguments?.get("no_invite") as Boolean
-      opts.no_meeting_end_message = arguments?.get("no_meeting_end_message") as Boolean
-      opts.no_meeting_error_message = arguments?.get("no_meeting_error_message") as Boolean
-      opts.no_record = arguments?.get("no_record") as Boolean
-      opts.no_share = arguments?.get("no_share") as Boolean
-      opts.no_titlebar = arguments?.get("no_titlebar") as Boolean
-      opts.no_unmute_confirm_dialog = arguments?.get("no_unmute_confirm_dialog") as Boolean
-      opts.no_video = arguments?.get("no_video") as Boolean
-      opts.no_webinar_register_dialog = arguments?.get("no_webinar_register_dialog") as Boolean
+      opts.no_bottom_toolbar = arguments?.get("no_bottom_toolbar") as? Boolean ?: false
+      opts.no_chat_msg_toast = arguments?.get("no_chat_msg_toast") as? Boolean ?: false
+      opts.no_dial_in_via_phone = arguments?.get("no_dial_in_via_phone") as? Boolean ?: false
+      opts.no_dial_out_to_phone = arguments?.get("no_dial_out_to_phone") as? Boolean ?: false
+      opts.no_disconnect_audio = arguments?.get("no_disconnect_audio") as? Boolean ?: false
+      opts.no_driving_mode = arguments?.get("no_driving_mode") as? Boolean ?: false
+      opts.no_invite = arguments?.get("no_invite") as? Boolean ?: false
+      opts.no_meeting_end_message = arguments?.get("no_meeting_end_message") as? Boolean ?: false
+      opts.no_meeting_error_message = arguments?.get("no_meeting_error_message") as? Boolean ?: false
+      opts.no_record = arguments?.get("no_record") as? Boolean ?: false
+      opts.no_share = arguments?.get("no_share") as? Boolean ?: false
+      opts.no_titlebar = arguments?.get("no_titlebar") as? Boolean ?: false
+      opts.no_unmute_confirm_dialog = arguments?.get("no_unmute_confirm_dialog") as? Boolean ?: false
+      opts.no_video = arguments?.get("no_video") as? Boolean ?: false
+      opts.no_webinar_register_dialog = arguments?.get("no_webinar_register_dialog") as? Boolean ?: false
       
 
       val params = JoinMeetingParams()
       if (arguments?.get("appPrivilegeToken") != null) {
-        params.appPrivilegeToken = arguments?.get("appPrivilegeToken") as String
+        params.appPrivilegeToken = arguments?.get("appPrivilegeToken") as? String ?: ""
       }
       if (arguments?.get("displayName") != null) {
-        params.displayName = arguments?.get("displayName") as String
+        params.displayName = arguments?.get("displayName") as? String ?: ""
       }
-      params.isAudioRawDataStereo = arguments?.get("isAudioRawDataStereo") as Boolean
-      params.isMyVoiceInMix = arguments?.get("isMyVoiceInMix") as Boolean
+      params.isAudioRawDataStereo = arguments?.get("isAudioRawDataStereo") as? Boolean ?: false
+      params.isMyVoiceInMix = arguments?.get("isMyVoiceInMix") as? Boolean ?: false
       if (arguments?.get("join_token") != null) {
-        params.join_token = arguments?.get("join_token") as String
+        params.join_token = arguments?.get("join_token") as? String ?: ""
       }
-      params.meetingNo = arguments?.get("meetingNo") as String
+      params.meetingNo = arguments?.get("meetingNo") as? String ?: ""
       if (arguments?.get("password") != null) {
-        params.password = arguments?.get("password") as String 
+        params.password = arguments?.get("password") as? String ?: "" 
       }
       if (arguments?.get("vanityID") != null) {
-        params.vanityID = arguments?.get("vanityID") as String
+        params.vanityID = arguments?.get("vanityID") as? String ?: ""
       }
       if (arguments?.get("webinarToken") != null) {
-        params.webinarToken = arguments?.get("webinarToken") as String
+        params.webinarToken = arguments?.get("webinarToken") as? String ?: ""
       }
 
       if (meetingService == null) {
@@ -142,7 +142,7 @@ class ZoomMeetingSdkPlugin: FlutterPlugin, MethodCallHandler, MeetingServiceList
 
         if (arguments?.get("urlVirtualBackground") != null) {
             try {
-              val url = URL(arguments?.get("urlVirtualBackground") as String)
+              val url = URL(arguments?.get("urlVirtualBackground") as? String ?: "")
               val connection = url.openConnection() as HttpURLConnection
               connection.doInput = true
               connection.connect()
@@ -184,8 +184,7 @@ class ZoomMeetingSdkPlugin: FlutterPlugin, MethodCallHandler, MeetingServiceList
         eventSink?.success(result)
     }
 
-    override fun onMeetingParameterNotification(p0: MeetingParameter) {
-        Log.d("TAG", "onMeetingParameterNotification: $p0")
+    override fun onMeetingParameterNotification(meetingParameter: MeetingParameter) {
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
